@@ -19,12 +19,16 @@ class Ballons extends Toys{
   double cost() => mulradio*_radio!*_cuv!; 
 
   int eficacia() => 12;
+
+  double price() => eficacia()*10+cost();
 }
 class Piece extends Toys{
   int? _volumen;
+  String? color;
 
-  Piece(this._volumen);
+  Piece(this._volumen,{this.color});
 
+  String? get getColor => color;
   int? get getVolumen => _volumen!;
   //con el signo de admiracion ! nos lanza una expcion si la variable contiene un valor nulo y con el de ? te retorna un valor null.
   double cost() => _cuv!*_volumen!;
@@ -47,6 +51,9 @@ class Baldecito extends Toys{
     const fixedMin = 3;
     return fixedMin*cantPieces();
   }
+  bool anyPiecesRose() => _pieceOfTheToy!.any((piece) => piece.getColor == "rosa");
+
+  double price() => (10*eficacia())+cost()+(anyPiecesRose() ? 20 : 0);
 }
 class TachitosApilables extends Baldecito{
 

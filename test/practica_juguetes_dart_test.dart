@@ -5,7 +5,7 @@ void main() {
   //class instances
   final pelota1 = Ballons(4);
   final part1 = Piece(4);
-  final part2 = Piece(2);
+  final part2 = Piece(2,color: "rosa");
   final part3 = Piece(5);
   final tachitos1 = TachitosApilables([part1,part2,part3]);
   final baldecito1 = Baldecito([part1,part2,part3]);
@@ -17,6 +17,9 @@ void main() {
     test("la eficacia de la pelota es siempre de 12",(){
       expect(pelota1.eficacia(), 12);
     });
+    test("pelota tiene que tener un precio de 144",(){
+      expect(pelota1.price(), 144);
+    });
   }); 
   group("test para tachitos1", (){
     test("el costo de tachitos1 es de 33", (){
@@ -25,6 +28,9 @@ void main() {
     test("tachito1 tiene una eficacia de 11",(){
       expect(tachitos1.eficacia(), 11);
     }); 
+    test("tachito1 tiene que tener un precio de 164", (){
+      expect(tachitos1.price(),163);
+    });
   });
   group("test para baldecito1",() {
     test("la pieza mas grande del baldecito1 es part3",(){
@@ -38,6 +44,9 @@ void main() {
     });
     test("valdecito1 tiene una eficacia de 9", (){
       expect(baldecito1.eficacia(), 9);
+    });
+    test("baldecito1 tiene un precio de 145", (){
+      expect(baldecito1.price(),145);
     });
   });
 }
