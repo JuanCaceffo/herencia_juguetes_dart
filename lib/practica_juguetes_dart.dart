@@ -45,7 +45,7 @@ class Baldecito extends Toys{
 
   int eficacia(){
     const fixedMin = 3;
-    return fixedMin*fixedCost();
+    return fixedMin*cantPieces();
   }
 }
 class TachitosApilables extends Baldecito{
@@ -54,6 +54,6 @@ class TachitosApilables extends Baldecito{
   
   @override
   int fixedCost() => 3;
-  @override
+  @override   
   int eficacia() => _pieceOfTheToy!.map((piece) => piece.getVolumen).toList().fold<int>(0, (curr, next) => curr+next!);
 }
