@@ -16,7 +16,7 @@ void main() {
       expect(3, baldecito1.cantPieces());
     });
     test("el baldecito1 tiene un precio de 35", (){
-      expect(baldecito1.price(), 35);
+      expect(baldecito1.cost(), 35);
     });
   });
 }

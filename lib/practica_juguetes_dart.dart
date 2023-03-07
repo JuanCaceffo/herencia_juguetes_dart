@@ -16,16 +16,18 @@ class Ballons extends Toys{
   double? get getRadio => _radio;
   
   //costo del juguete
-  double price() => mulradio*_radio!*_cuv!; 
+  double cost() => mulradio*_radio!*_cuv!; 
+
+  int eficacia() => 12;
 }
 class Piece extends Toys{
-  double? _volumen;
+  int? _volumen;
 
   Piece(this._volumen);
 
-  double? get getVolumen => _volumen!;
+  int? get getVolumen => _volumen!;
   //con el signo de admiracion ! nos lanza una expcion si la variable contiene un valor nulo y con el de ? te retorna un valor null.
-  double price() => _cuv!*_volumen!;
+  double cost() => _cuv!*_volumen!;
 }
 
 class Baldecito extends Toys{
@@ -35,16 +37,23 @@ class Baldecito extends Toys{
   //getters
   int cantPieces() => _pieceOfTheToy!.length;
 
-  int fixedPrice() => 5;
+  int fixedCost() => 5;
   //this method returns the piece whit the higher volume 
   Piece pieceHigherVolume() => _pieceOfTheToy!.reduce((curr, next) => curr.getVolumen!>next.getVolumen! ? curr:next);
 
-  double price() => fixedPrice()+(cantPieces()*pieceHigherVolume().price());
+  double cost() => fixedCost()+(cantPieces()*pieceHigherVolume().cost());
+
+  int eficacia(){
+    const fixedMin = 3;
+    return fixedMin*fixedCost();
+  }
 }
 class TachitosApilables extends Baldecito{
 
   TachitosApilables(List<Piece> PieceOfTheToy):super(PieceOfTheToy);
   
   @override
-  int fixedPrice() => 3;
+  int fixedCost() => 3;
+  @override
+  int eficacia() => _pieceOfTheToy!.map((piece) => piece.getVolumen).toList().fold<int>(0, (curr, next) => curr+next!);
 }
