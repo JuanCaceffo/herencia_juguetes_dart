@@ -9,15 +9,22 @@ class NinieTipique{
   List get getListToys => _listToys!;
 
   double coeficiente() => 1+(_ageMonths!/100);
-  double entreain(var toy) => double.parse((toy.eficacia()*coeficiente()).toStringAsFixed(1));
+  double entertain(var toy) => double.parse((toy.eficacia()*coeficiente()).toStringAsFixed(1));
 }
-class NinieRevoltose extends NinieTipique{
-  NinieRevoltose(List toys,int age):super(toys,age);
+class NinieCuriose extends NinieTipique{
+  NinieCuriose(List toys,int age):super(toys,age);
 
   @override
-  double entreain(var toy) {
+  double entertain(var toy) {
     const mulTime = 1.5;
-    return double.parse((super.entreain(toy)* mulTime).toStringAsFixed(1));
+    return double.parse((super.entertain(toy)* mulTime).toStringAsFixed(1));
   } 
+}
+class NinieRevolose extends NinieTipique{
+  NinieRevolose(var listToys, ageMhonts):super(listToys,ageMhonts);
 
+  @override
+  double entertain(var toy){
+    return double.parse((super.entertain(toy)/2).toStringAsFixed(1));
+  }
 }
