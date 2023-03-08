@@ -11,7 +11,8 @@ void main() {
   final tachitos1 = TachitosApilables([part1,part2,part3]);
   final baldecito1 = Baldecito([part1,part2,part3]);
   final ninieNormie = NinieTipique([pelota1,baldecito1], 10);
-  final ninieTravieso = NinieRevoltose([pelota1,tachitos1], 10);
+  final ninieCurioso = NinieCuriose([pelota1,tachitos1], 10);
+  final nineRevoltoso = NinieRevolose([tachitos1, baldecito1],15);
   group("test jugetes", (){
     group("test para pelota", (){
       test("la pelota tiene un costo de 24",(){
@@ -59,12 +60,17 @@ void main() {
         expect(ninieNormie.coeficiente(), 1.1);
       });
       test("ninieNormie debe ser entretenido por 13.1 minutos", (){
-        expect(ninieNormie.entreain(pelota1), 13.2);
+        expect(ninieNormie.entertain(pelota1), 13.2);
       });
     });
-    group("test ninies revoltoses", (){
-      test("el niniotravieso con la pelota1 es entretenido por 19.6 minutos", (){
-        expect(ninieTravieso.entreain(pelota1), 19.8);
+    group("test ninies curiosos", (){
+      test("el niniocurioso con la pelota1 es entretenido por 19.6 minutos", (){
+        expect(ninieCurioso.entertain(pelota1), 19.8);
+      });
+    });
+    group("nines revoltoses", (){
+      test("entetenimiento de ninie revoltoso con los tachitos es 6.0",(){
+        expect(nineRevoltoso.entertain(tachitos1), 6.3);
       });
     });
   });
