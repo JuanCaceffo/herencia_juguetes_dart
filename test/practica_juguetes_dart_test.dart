@@ -63,7 +63,7 @@ void main() {
         expect(ninieNormie.entertain(pelota1), 13.2);
       });
       test("ninie normi acepta el tachito",(){
-        ninieNormie.giftToy(tachitos1);
+        ninieNormie.buyToy(tachitos1);
         expect(ninieNormie.getListToys.length, 3);
       });
     });
@@ -72,11 +72,11 @@ void main() {
         expect(ninieCurioso.entertain(pelota1), 19.8);
       });
       test("nine curioso no acepta el tachito1", (){
-        ninieCurioso.giftToy(tachitos1);
+        expect(()=>ninieCurioso.buyToy(tachitos1),throwsA(isA<Exception>()));
         expect(ninieCurioso.getListToys.length, 2);
       });
       test("nine curiose acepta la pelota", (){
-        ninieCurioso.giftToy(pelota1);
+        ninieCurioso.buyToy(pelota1);
         expect(ninieCurioso.getListToys.length, 3);
       });
     });
@@ -87,8 +87,8 @@ void main() {
       test("ninine revoltose se entretiene 9mins con la peltoa", (){
         expect(nineRevoltoso.entertain(pelota1), 6.9);
       });
-      test("el ninie revoltose no acpeta los tachitos", (){
-        nineRevoltoso.giftToy(tachitos1);
+      test("el ninie revoltose no acpeta los tachitos y genera una execpcion", (){
+        expect(()=>nineRevoltoso.buyToy(tachitos1), throwsA(isA<Exception>()));
         expect(nineRevoltoso.getListToys.length, 2);
       });
     });

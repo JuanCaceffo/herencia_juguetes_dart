@@ -10,7 +10,7 @@ class NinieTipique{
 
   double coeficiente() => 1+(_ageMonths!/100);
   double entertain(var toy) => double.parse((toy.eficacia()*coeficiente()).toStringAsFixed(1));
-  void giftToy(var toy){
+  void buyToy(var toy){
     _listToys!.add(toy);
   }
 }
@@ -22,12 +22,13 @@ class NinieCuriose extends NinieTipique{
     const mulTime = 1.5;
     return double.parse((super.entertain(toy)* mulTime).toStringAsFixed(1));
   }
-  @override
-  void giftToy(toy){
+  bool acceptToy(toy) {
     const topPrice = 150;
-    if(toy.price()<=topPrice){
-      _listToys!.add(toy);
-    }
+    return toy.price()<=(topPrice);
+  }
+  @override 
+  void buyToy(toy){
+      acceptToy(toy) ? _listToys!.add(toy) : throw Exception("no acepta el jugete"); 
   } 
 }
 class NinieRevolose extends NinieTipique{
@@ -37,10 +38,11 @@ class NinieRevolose extends NinieTipique{
   double entertain(var toy){
     return double.parse((super.entertain(toy)/2).toStringAsFixed(1));
   }
+  bool acceptToy(toy){
+    return (entertain(toy)>=7);
+  }
   @override
-  void giftToy(toy){
-    if (entertain(toy)>7){
-      _listToys!.add(toy);
-    }
+  void buyToy(toy){
+    acceptToy(toy) ? _listToys!.add(toy) : throw Exception("No acpeta el jugete");
   }
 }
