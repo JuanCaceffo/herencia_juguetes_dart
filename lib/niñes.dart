@@ -10,8 +10,24 @@ class NinieTipique{
 
   double coeficiente() => 1+(_ageMonths!/100);
   double entertain(var toy) => double.parse((toy.eficacia()*coeficiente()).toStringAsFixed(1));
+  bool acceptToy(toy) => true;
   void buyToy(var toy){
     _listToys!.add(toy);
+  }
+  void takeListOfToys(listToys){
+    _listToys!.addAll(listToys);
+  }
+  void donateToys(ninie){
+    final List listToysAccepted = _listToys!.where((toy) => ninie.acceptToy(toy)).toList(); 
+    listDonateToysIsEmpty(listToysAccepted);
+    _listToys!.removeWhere((toy) => listToysAccepted.contains(toy));
+    ninie.takeListOfToys(listToysAccepted);
+  }
+  //validations
+  void listDonateToysIsEmpty(listToys){
+    if (listToys.isEmpty){
+      throw Exception("el ninie no acepto ningun jugete");
+    }
   }
 }
 class NinieCuriose extends NinieTipique{
@@ -22,6 +38,7 @@ class NinieCuriose extends NinieTipique{
     const mulTime = 1.5;
     return double.parse((super.entertain(toy)* mulTime).toStringAsFixed(1));
   }
+  @override
   bool acceptToy(toy) {
     const topPrice = 150;
     return toy.price()<=(topPrice);
@@ -29,7 +46,7 @@ class NinieCuriose extends NinieTipique{
   @override 
   void buyToy(toy){
       acceptToy(toy) ? _listToys!.add(toy) : throw Exception("no acepta el jugete"); 
-  } 
+  }
 }
 class NinieRevolose extends NinieTipique{
   NinieRevolose(var listToys, ageMhonts):super(listToys,ageMhonts);
@@ -38,6 +55,7 @@ class NinieRevolose extends NinieTipique{
   double entertain(var toy){
     return double.parse((super.entertain(toy)/2).toStringAsFixed(1));
   }
+  @override
   bool acceptToy(toy){
     return (entertain(toy)>=7);
   }
