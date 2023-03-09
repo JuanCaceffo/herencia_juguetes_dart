@@ -66,6 +66,11 @@ void main() {
         ninieNormie.buyToy(tachitos1);
         expect(ninieNormie.getListToys.length, 3);
       });
+      test("ninioNormie dona todos sus jugetes a ninioCuriose, normie se queda sin juegetes y curiose ahora tiene 4", (){
+        ninieNormie.donateToys(ninieCurioso);
+        expect(ninieNormie.getListToys.isEmpty,true);
+        expect(ninieCurioso.getListToys, [pelota1,tachitos1,pelota1,baldecito1]);
+      }); 
     });
     group("test ninies curiosos", (){
       test("el niniocurioso con la pelota1 es entretenido por 19.6 minutos", (){
@@ -79,17 +84,25 @@ void main() {
         ninieCurioso.buyToy(pelota1);
         expect(ninieCurioso.getListToys.length, 3);
       });
+      test("ninie curioso dona sus jugete a nineRevoltose pero no acepta ninguno y se genera una exepcion", (){
+        expect(()=>ninieCurioso.donateToys(nineRevoltoso),throwsA(isA<Exception>()));
+      }); 
     });
     group("nines revoltoses", (){
       test("entetenimiento de ninie revoltoso con los tachitos es 6.3",(){
         expect(nineRevoltoso.entertain(tachitos1), 6.3);
       });
-      test("ninine revoltose se entretiene 9mins con la peltoa", (){
+      test("ninine revoltose se entretiene 6.9mins con la peltoa", (){
         expect(nineRevoltoso.entertain(pelota1), 6.9);
       });
       test("el ninie revoltose no acpeta los tachitos y genera una execpcion", (){
         expect(()=>nineRevoltoso.buyToy(tachitos1), throwsA(isA<Exception>()));
         expect(nineRevoltoso.getListToys.length, 2);
+      });
+      test("ninioRevoltose dona su baldecito al ninioCuriose, revoltose se queada con 1 y curiose con 3", (){
+        nineRevoltoso.donateToys(ninieCurioso);
+        expect(nineRevoltoso.getListToys, [tachitos1]);
+        expect(ninieCurioso.getListToys, [pelota1,tachitos1,baldecito1]);
       });
     });
   });
